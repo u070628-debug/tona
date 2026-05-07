@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user with role-based access",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "usuario"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["username", "email", "role", "createdAt"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Customer registry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "visits": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "email", "phone", "visits", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Menu items",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string", "enum": ["Tacos", "Gringas", "Bebidas", "Extras"] },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "price", "category"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Sales records",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "completed", "cancelled"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["total", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users": { "schema": "User", "description": "System users" },
+    "clients": { "schema": "Client", "description": "Customer database" },
+    "products": { "schema": "Product", "description": "Menu items" },
+    "sales": { "schema": "Sale", "description": "Sales history" }
+  }
+}
